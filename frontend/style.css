@@ -1,0 +1,638 @@
+/* ==========================================
+   Reset Básico
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Body e Estrutura Principal
+========================================== */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f0e8;
+  color: #12372a;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 2rem;
+}
+
+body.dark-mode {
+  background-color: #12372a;
+  color: #f5f0e8;
+}
+
+/* ==========================================
+   Header e Logo
+========================================== */
+
+header {
+  background-color: transparent;
+  padding: 2rem 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+body.dark-mode header {
+  color: #f5f0e8;
+}
+
+.logo {
+  width: 230px;
+  height: auto;
+  aspect-ratio: 1/1;
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease forwards;
+}
+
+.logo-dark {
+  display: none;
+}
+
+body.dark-mode .logo-light {
+  display: none;
+}
+
+body.dark-mode .logo-dark {
+  display: inline;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* ==========================================
+   Main e Descrição
+========================================== */
+
+main {
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.descricao {
+  max-width: 600px;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   Abas de Navegação
+========================================== */
+
+.tab-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #43766c;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .tab-button {
+  color: #adbc9f;
+}
+
+.tab-button:hover {
+  background-color: rgba(18, 55, 42, 0.05);
+  border-color: #43766c;
+}
+
+body.dark-mode .tab-button:hover {
+  background-color: rgba(245, 240, 232, 0.1);
+  border-color: #adbc9f;
+}
+
+.tab-button.active {
+  background-color: #12372a;
+  color: #f5f0e8;
+  border-color: #12372a;
+}
+
+body.dark-mode .tab-button.active {
+  background-color: #f5f0e8;
+  color: #12372a;
+  border-color: #f5f0e8;
+}
+
+/* ==========================================
+   Formulário e Conteúdo das Abas
+========================================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#essay-textarea {
+  width: 100%;
+  min-height: 350px;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  border-radius: 16px;
+  border: 2px solid #12372a;
+  background-color: #ffffff;
+  color: #12372a;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#essay-textarea:focus {
+  outline: none;
+  border-color: #43766c;
+  box-shadow: 0 0 0 3px rgba(18, 55, 42, 0.2);
+}
+
+body.dark-mode #essay-textarea {
+  background-color: #adbc9f;
+  border-color: #fbfada;
+  color: #12372a;
+}
+
+body.dark-mode #essay-textarea:focus {
+  border-color: #f5f0e8;
+  box-shadow: 0 0 0 3px rgba(245, 240, 232, 0.2);
+}
+
+/* ==========================================
+   Drop Area (Upload de Arquivo)
+========================================== */
+
+#drop-area {
+  border: 2px dashed #12372a;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  min-height: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode #drop-area {
+  background-color: #adbc9f;
+  border-color: #fbfada;
+  color: #12372a;
+}
+
+#drop-area.dragover {
+  border-color: #43766c;
+  transform: scale(1.02);
+}
+body.dark-mode #drop-area.dragover {
+  border-color: #f5f0e8;
+}
+
+#file-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
+}
+
+#file-icon {
+  width: 50px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+#file-text {
+  color: #12372a;
+}
+
+#file-name {
+  font-size: 1rem;
+  color: #12372a;
+  text-align: center;
+  word-break: break-all;
+  display: none;
+}
+body.dark-mode #file-name {
+  color: #12372a;
+}
+
+#remove-file {
+  background-color: #e57373;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -20px;
+  transition: all 0.2s;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#remove-file:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   Botão Principal e Feedback
+========================================== */
+
+button#submitButton {
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #12372a, #1e4d3b);
+  color: #f5f0e8;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  min-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.dark-mode button#submitButton {
+  background: linear-gradient(135deg, #f5f0e8, #ddd6c8);
+  color: #12372a;
+}
+
+button#submitButton:hover {
+  background: linear-gradient(135deg, #1e4d3b, #12372a);
+  transform: scale(1.05);
+}
+
+body.dark-mode button#submitButton:hover {
+  background: linear-gradient(135deg, #ddd6c8, #f5f0e8);
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: scale(1);
+}
+
+body.dark-mode button#submitButton:disabled {
+  background: #4b5563;
+  color: #9ca3af;
+}
+
+.feedback {
+  margin-top: -0.5rem;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  min-height: 24px;
+}
+
+.feedback.active {
+  opacity: 1;
+}
+
+/* ==========================================
+   Spinner (Botão)
+========================================== */
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #f5f0e8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: auto;
+}
+
+body.dark-mode .spinner {
+  border: 3px solid rgba(18, 55, 42, 0.3);
+  border-top: 3px solid #12372a;
+}
+
+
+/* ==========================================
+   Seção de Resultados
+========================================== */
+
+#results-section {
+  width: 100%;
+  max-width: 900px;
+  padding: 1rem;
+  margin-top: 2rem;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#results-section.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.results-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #43766c;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+body.dark-mode .summary-card {
+  background-color: #1e4d3b;
+  border-left-color: #adbc9f;
+}
+
+.nota-final-label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.nota-final-score {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #12372a;
+  margin-bottom: 1.5rem;
+}
+
+body.dark-mode .nota-final-score {
+  color: #f5f0e8;
+}
+
+.geral-comment-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.geral-comment-text {
+  text-align: left;
+  line-height: 1.7;
+}
+
+.competencies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.competency-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark-mode .competency-card {
+  background-color: #1e4d3b;
+  color: #fbfada;
+}
+
+.competency-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.competency-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+body.dark-mode .competency-title {
+  color: #f5f0e8;
+}
+
+.competency-description {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+body.dark-mode .competency-description {
+  color: #adbc9f;
+}
+
+.competency-score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.score-good { background-color: #d1e7dd; color: #0f5132; }
+.score-medium { background-color: #fff3cd; color: #664d03; }
+.score-ok { background-color: #ffe5d0; color: #85450d; }
+.score-bad { background-color: #f8d7da; color: #842029; }
+
+hr.competency-divider {
+  border: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+body.dark-mode hr.competency-divider {
+  background-color: #43766c;
+}
+
+.feedback-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+body.dark-mode .feedback-label {
+  color: #f5f0e8;
+}
+
+.feedback-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   Footer
+========================================== */
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  border-top: 1px solid #ccc;
+  margin-top: 2rem;
+}
+
+body.dark-mode footer {
+  background-color: #12372a;
+  color: #f5f0e8;
+  border-top: 1px solid #43766c;
+}
+
+
+/* ==========================================
+   Switch de Tema
+========================================== */
+#theme-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #12372a; transition: 0.4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: #f5f0e8; transition: 0.4s; border-radius: 50%; }
+input:checked + .slider { background-color: #f5f0e8; }
+input:checked + .slider:before { background-color: #12372a; transform: translateX(24px); }
+body.dark-mode .slider { background-color: #f5f0e8; }
+body.dark-mode .slider:before { background-color: #12372a; }
+
+
+/* ==========================================
+   Animações
+========================================== */
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDrop {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-drop {
+  opacity: 0;
+  animation: fadeDrop 1s ease forwards;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.pulsing {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Delays para animações */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1.0s; }
+
+
+/* ==========================================
+   Responsividade
+========================================== */
+
+@media (max-width: 600px) {
+  body { padding-top: 1rem; }
+  header h1 { font-size: 2rem; }
+  .descricao { font-size: 1rem; padding: 0 1rem; }
+  main { max-width: 100%; padding: 1rem; }
+  #essay-textarea, #drop-area { min-height: 300px; }
+  .competencies-grid { grid-template-columns: 1fr; }
+  #results-section { padding: 0.5rem; }
+  .summary-card { padding: 1.5rem; }
+  .nota-final-score { font-size: 3rem; }
+}
+
+
+
+/* ==========================================
+   NOVO: Conteúdo do Resultado (Simples)
+========================================== */
+
+.results-content {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #43766c;
+  line-height: 1.7;
+  white-space: pre-wrap; /* Essencial para manter as quebras de linha */
+  text-align: left;
+}
+
+body.dark-mode .results-content {
+  background-color: #1e4d3b;
+  border-left-color: #adbc9f;
+  color: #f5f0e8;
+}
