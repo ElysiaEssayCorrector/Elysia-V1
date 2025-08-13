@@ -4,6 +4,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import logging
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 # Adiciona o diretório raiz do projeto ao path para encontrar os módulos
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -29,9 +31,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve arquivos estáticos do frontend
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'frontend'))
+app.mount("/assets", StaticFiles(directory=os.path.join(frontend_path, "assets")), name="assets")
+app.mount("/static", StaticFiles(directory=frontend_path), name="static")
+
 # Define o modelo de dados para a requisição (o que a API espera receber)
 class EssayRequest(BaseModel):
     text: str
+
+@app.get("/", summary="Frontend principal")
+async def read_index():
+    """Serve a página principal do frontend."""
+    return FileResponse(os.path.join(frontend_path, "index.html"))
+
+@app.get("/script.js")
+async def read_script():
+    """Serve o arquivo JavaScript."""
+    return FileResponse(os.path.join(frontend_path, "script.js"))
+
+@app.get("/style.css")
+async def read_style():
+    """Serve o arquivo CSS."""
+    return FileResponse(os.path.join(frontend_path, "style.css"))
 
 @app.post("/correct/", summary="Corrige uma redação")
 async def correct_essay(request: EssayRequest):
@@ -61,7 +83,7 @@ async def correct_essay(request: EssayRequest):
         logging.error(f"Erro inesperado no endpoint /correct/: {e}")
         raise HTTPException(status_code=500, detail=f"Erro interno no servidor: {str(e)}")
 
-@app.get("/", summary="Endpoint de verificação")
+@app.get("/health", summary="Endpoint de verificação")
 def read_root():
     """Endpoint raiz para verificar se a API está funcionando."""
     return {"status": "Elysia-Sabia API está online!"}
