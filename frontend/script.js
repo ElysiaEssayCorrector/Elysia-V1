@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentInputMethod = 'text';
 
   // URL DA SUA API BACKEND LOCAL
-  const API_URL = 'http://127.0.0.1:8000/correct/';
+  const API_URL = '/correct/';
 
   // ================================
   // Lógica de Abas (Texto/Arquivo)
